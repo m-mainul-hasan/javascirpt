@@ -25,7 +25,7 @@ var budgetController = (function() {
 	};
 
 	return {
-		addItem: function() {
+		addItem: function(type, des, val) {
 			var newItem, ID;
 
 			// Create new ID
@@ -85,7 +85,9 @@ var UIController = (function () {
 var controller = (function(budgetCtrl, UICtrl){
 
 	var setUpEventListeners = function() {
-		document.querySelector(DOM.inputBtn ).addEventListener('click', ctrlAddItem);
+		var DOM = UICtrl.getDOMstrings();
+
+		document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
 
 		document.addEventListener('keypress', function(event) {
 			if(event.keyCode === 13 || event.which === 13) {
@@ -93,8 +95,6 @@ var controller = (function(budgetCtrl, UICtrl){
 			}
 		});
 	};
-
-	var DOM = UICtrl.getDOMstrings();
 
 	var ctrlAddItem = function() {
 		var input, newItem;
@@ -105,7 +105,7 @@ var controller = (function(budgetCtrl, UICtrl){
 		// 2. Add the item to the budget controller
 		newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
-		// 3. Add the item to the UI
+		// 3. Add the item to the UI 
 
 		// 4. Calculate the budget
 
